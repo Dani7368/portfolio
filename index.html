@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daniella Lawi | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+  <style>
+    :root {
+      /* ── Palette ── */
+      --p1:  #3E3862;
+      --p2:  #746488;
+      --p3:  #E6C4E7;
+      --p4:  #787599;
+      --p5:  #5E618C;
+      --p6:  #3C425C;
+
+      /* ── Dark surfaces ── */
+      --bg:    #16132A;
+      --bg-2:  #1E1B38;
+      --bg-3:  #252244;
+      --card:  rgba(62,56,98,.45);
+      --border-dark: rgba(230,196,231,.12);
+
+      /* ── Light surfaces ── */
+      --lbg:   #FAFAFF;
+      --lbg-2: #F3F0FF;
+      --lbg-3: #EDE8FA;
+      --lcard: #FFFFFF;
+      --border-lt: rgba(100,88,150,.12);
+
+      /* ── Dark text ── */
+      --dtx1: #1E1A38;
+      --dtx2: #3A3360;
+      --dtx3: #746488;
+      --dtx4: #9E93B8;
+
+      /* ── Light text ── */
+      --tx1: #EDE8F8;
+      --tx2: #C4BCDF;
+      --tx3: rgba(230,196,231,.6);
+      --tx4: rgba(230,196,231,.35);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    a, button { transition: all .2s ease; }
+    ::selection { background: rgba(230,196,231,.28); color: #fff; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--lbg);
+      color: var(--dtx2);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(22,19,42,.85);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      height: 64px;
+      display: flex; align-items: center;
+      padding: 0 clamp(28px,6vw,120px);
+      justify-content: space-between;
+    }
+    .nav-logo { font-size: .95rem; font-weight: 800; color: var(--tx1); letter-spacing: -.3px; }
+    .nav-logo span { color: var(--p3); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: .83rem; font-weight: 500;
+      color: var(--tx3); text-decoration: none; transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--p3); }
+
+    /* ── LAYOUT ──────────────────────────────────────── */
+    section { padding: 120px clamp(28px, 6vw, 120px); }
+    .container { max-width: 1360px; margin: 0 auto; width: 100%; }
+    .section-label {
+      font-size: .7rem; font-weight: 700; letter-spacing: .18em;
+      text-transform: uppercase; margin-bottom: 12px;
+      color: var(--p3); display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::before {
+      content: ''; display: block; width: 24px; height: 2px;
+      background: currentColor; border-radius: 2px; opacity: .7;
+    }
+    .section-title {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 800; letter-spacing: -.8px;
+      margin-bottom: 60px; color: #1E1A38;
+      line-height: 1.1;
+    }
+
+    /* ── HERO ────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(145deg, #100D22 0%, #1C1835 40%, var(--p1) 75%, var(--p6) 100%);
+      display: flex; align-items: center;
+      padding: 100px clamp(28px,6vw,120px) 120px;
+      position: relative; overflow: hidden;
+    }
+    /* dot grid */
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(230,196,231,.05) 1px, transparent 1px);
+      background-size: 32px 32px; pointer-events: none;
+    }
+    /* orbs — animated */
+    .hero-glow {
+      position: absolute; width: 800px; height: 700px;
+      background: radial-gradient(ellipse, rgba(230,196,231,.13) 0%, transparent 65%);
+      top: -150px; right: -80px; filter: blur(90px); pointer-events: none;
+      animation: orbFloat1 12s ease-in-out infinite alternate;
+    }
+    .hero-glow-2 {
+      position: absolute; width: 500px; height: 500px;
+      background: radial-gradient(ellipse, rgba(116,100,136,.22) 0%, transparent 70%);
+      bottom: 40px; left: 3%; filter: blur(70px); pointer-events: none;
+      animation: orbFloat2 16s ease-in-out infinite alternate;
+    }
+    @keyframes orbFloat1 {
+      from { transform: translate(0,0) scale(1); opacity:.8; }
+      to   { transform: translate(-60px,40px) scale(1.08); opacity:1; }
+    }
+    @keyframes orbFloat2 {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(50px,-40px) scale(1.12); }
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 1360px; margin: 0 auto; width: 100%; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(230,196,231,.10);
+      border: 1px solid rgba(230,196,231,.22);
+      border-radius: 999px; padding: 7px 18px;
+      font-size: .7rem; font-weight: 600; color: var(--p3);
+      letter-spacing: .1em; text-transform: uppercase; margin-bottom: 28px;
+      box-shadow: 0 0 20px rgba(230,196,231,.06);
+      animation: fadeSlideDown .8s ease both;
+    }
+    .hero h1 { animation: fadeSlideDown .9s .1s ease both; }
+    .hero-sub { animation: fadeSlideDown .9s .2s ease both; }
+    .hero-contacts { animation: fadeSlideDown .9s .3s ease both; }
+    .hero-btns { animation: fadeSlideDown .9s .4s ease both; }
+    @keyframes fadeSlideDown {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-dot {
+      width: 6px; height: 6px; background: var(--p3);
+      border-radius: 50%; flex-shrink: 0;
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100%{ box-shadow: 0 0 0 0 rgba(230,196,231,.5) }
+      50%    { box-shadow: 0 0 0 7px rgba(230,196,231,0) }
+    }
+    .hero h1 {
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 900; color: #fff;
+      letter-spacing: -4px; line-height: 1;
+      margin-bottom: 24px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--p3), #c99ecb);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 1.4vw, 1.25rem);
+      color: rgba(230,196,231,.55); font-weight: 300;
+      max-width: 680px; line-height: 1.8; margin-bottom: 48px;
+    }
+    .hero-contacts { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 44px; }
+    .hero-contact {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(62,56,98,.5);
+      border: 1px solid rgba(230,196,231,.12);
+      border-radius: 999px; padding: 7px 16px;
+      color: rgba(230,196,231,.7); font-size: .82rem;
+      text-decoration: none; transition: all .18s;
+      backdrop-filter: blur(8px);
+    }
+    .hero-contact:hover {
+      background: rgba(230,196,231,.12);
+      border-color: rgba(230,196,231,.3);
+      color: var(--p3);
+    }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 30px;
+      background: linear-gradient(135deg, var(--p3), #c99ecb);
+      color: #1C1835; border: none; border-radius: 12px;
+      font-size: .9rem; font-weight: 800; cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(230,196,231,.28);
+      transition: all .2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(230,196,231,.38); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 30px;
+      background: rgba(62,56,98,.45);
+      border: 1px solid rgba(230,196,231,.2);
+      color: rgba(230,196,231,.85); border-radius: 12px;
+      font-size: .9rem; font-weight: 600; cursor: pointer;
+      text-decoration: none; transition: all .2s;
+      backdrop-filter: blur(8px);
+    }
+    .btn-ghost:hover { background: rgba(62,56,98,.7); border-color: rgba(230,196,231,.4); }
+
+    /* ── ABOUT ── light lavender, dark text ─────────── */
+    #about {
+      background: linear-gradient(160deg, #F4EFF7 0%, #EEE8F5 60%, #F4EFF7 100%);
+    }
+    #about .section-label { color: var(--p5); }
+    #about .section-title { color: #1E1A38; }
+    .about-grid {
+      display: grid; grid-template-columns: 1.2fr 0.8fr;
+      gap: 80px; align-items: center;
+    }
+    .about-text { font-size: 1.05rem; color: #3A3360; line-height: 1.9; }
+    .about-text strong { color: #1E1A38; font-weight: 700; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .stat-box {
+      background: #FFFFFF;
+      border: 1.5px solid rgba(94,97,140,.18);
+      border-radius: 20px; padding: 30px;
+      text-align: center; cursor: default;
+      box-shadow: 0 4px 20px rgba(62,56,98,.08);
+      transition: border-color .25s, transform .25s cubic-bezier(.34,1.2,.64,1), box-shadow .25s;
+    }
+    .stat-box:hover {
+      border-color: rgba(94,97,140,.32);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(62,56,98,.14);
+    }
+    .stat-num {
+      font-size: 2.4rem; font-weight: 900;
+      color: #3E3862;
+      letter-spacing: -1.5px; display: block;
+    }
+    .stat-label {
+      font-size: .68rem; color: #746488; font-weight: 600;
+      margin-top: 6px; text-transform: uppercase; letter-spacing: .08em;
+    }
+
+    /* ── EXPERIENCE — dark premium like hero ─────────── */
+    .exp-section {
+      background: linear-gradient(155deg, #100D22 0%, #1C1835 30%, #26204A 60%, var(--p1) 100%);
+      position: relative; overflow: hidden;
+    }
+    /* ambient glow */
+    .exp-section::before {
+      content: ''; position: absolute;
+      width: 600px; height: 500px;
+      background: radial-gradient(ellipse, rgba(230,196,231,.08) 0%, transparent 65%);
+      top: -80px; left: 30%; filter: blur(80px); pointer-events: none;
+    }
+    .exp-section .section-label { color: var(--p3); }
+    .exp-section .section-title { color: var(--tx1); }
+    .exp-list { display: flex; flex-direction: column; gap: 0; position: relative; z-index: 1; }
+    .exp-list::before {
+      content: '';
+      position: absolute; right: 11px; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, var(--p3), rgba(230,196,231,.08));
+    }
+    .exp-card {
+      background: rgba(62,56,98,.38);
+      border: 1px solid rgba(230,196,231,.1);
+      border-radius: 20px;
+      padding: 36px 36px 32px 28px;
+      margin-bottom: 24px; margin-right: 44px;
+      position: relative;
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 4px 24px rgba(10,8,20,.25);
+      transition: border-color .25s, box-shadow .28s, transform .28s cubic-bezier(.34,1.1,.64,1);
+    }
+    .exp-card:hover {
+      border-color: rgba(230,196,231,.25);
+      box-shadow: 0 20px 56px rgba(10,8,20,.4), 0 0 0 1px rgba(230,196,231,.08);
+      transform: translateX(-8px);
+    }
+    .exp-card::after {
+      content: '';
+      position: absolute; right: -30px; top: 32px;
+      width: 16px; height: 16px;
+      background: linear-gradient(135deg, var(--p3), #c99ecb);
+      border: 3px solid #1C1835;
+      border-radius: 50%;
+      box-shadow: 0 0 16px rgba(230,196,231,.5);
+      transition: box-shadow .25s;
+    }
+    .exp-card:hover::after { box-shadow: 0 0 24px rgba(230,196,231,.7); }
+    .exp-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 6px;
+    }
+    .exp-company {
+      font-size: .82rem; color: var(--p3); font-weight: 700;
+      margin-bottom: 5px; letter-spacing: .02em;
+    }
+    .exp-title { font-size: 1.1rem; font-weight: 700; color: var(--tx1); }
+    .exp-date {
+      font-size: .73rem; font-weight: 700;
+      background: rgba(230,196,231,.12);
+      color: var(--p3); border: 1px solid rgba(230,196,231,.22);
+      padding: 5px 15px; border-radius: 999px; white-space: nowrap;
+    }
+    .exp-bullets { margin-top: 16px; padding-right: 16px; display: flex; flex-direction: column; gap: 10px; }
+    .exp-bullets li {
+      font-size: .875rem; color: var(--tx2); line-height: 1.72;
+      list-style: none; position: relative;
+    }
+    .exp-bullets li::before {
+      content: '▸'; color: var(--p3);
+      position: absolute; right: -14px; font-size: .65rem; top: 5px;
+    }
+
+    /* ── PROJECTS ── light lavender, readable ────────── */
+    #projects {
+      background: linear-gradient(160deg, #F4EFF7 0%, #EDE6F5 60%, #F2EDF8 100%);
+    }
+    #projects .section-label { color: var(--p5); }
+    #projects .section-title { color: #1E1A38; }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    @media (max-width: 1100px) { .projects-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 680px)  { .projects-grid { grid-template-columns: 1fr; } }
+    .project-card {
+      background: #FFFFFF;
+      border: 1.5px solid rgba(94,97,140,.14);
+      border-radius: 22px; overflow: hidden;
+      display: flex; flex-direction: column;
+      box-shadow: 0 4px 24px rgba(62,56,98,.10);
+      transition: transform .28s cubic-bezier(.34,1.1,.64,1), box-shadow .28s, border-color .22s;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(116,100,136,.22);
+      box-shadow: 0 24px 60px rgba(100,88,150,.16), 0 4px 12px rgba(100,88,150,.08);
+    }
+    .project-card:hover .project-icon {
+      transform: scale(1.12) rotate(-3deg);
+      background: rgba(230,196,231,.22);
+    }
+    .project-card:hover .project-name {
+      background: linear-gradient(135deg,#fff,var(--p3));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    /* dark header preserved for contrast */
+    .project-header {
+      background: linear-gradient(135deg, #1C1835 0%, var(--p1) 60%, var(--p5) 100%);
+      padding: 28px; position: relative; overflow: hidden;
+    }
+    .project-header::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(230,196,231,.06) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    .project-header::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 80% 30%, rgba(230,196,231,.15) 0%, transparent 55%);
+    }
+    .project-icon {
+      width: 48px; height: 48px;
+      background: rgba(230,196,231,.15);
+      border: 1px solid rgba(230,196,231,.25);
+      border-radius: 14px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 18px;
+      position: relative; z-index: 1;
+      transition: transform .28s cubic-bezier(.34,1.2,.64,1), background .22s;
+      box-shadow: 0 4px 16px rgba(230,196,231,.12);
+    }
+    .project-name { font-size: 1.2rem; font-weight: 800; color: #fff; z-index: 1; position: relative; margin-bottom: 5px; }
+    .project-tagline { font-size: .78rem; color: rgba(230,196,231,.5); z-index: 1; position: relative; }
+    .project-body { padding: 28px; flex: 1; display: flex; flex-direction: column; gap: 16px; }
+    .project-desc { font-size: .9rem; color: #3A3360; line-height: 1.82; max-width: 420px; }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 7px; }
+    .tech-tag {
+      font-size: .72rem; font-weight: 600; padding: 4px 12px;
+      border-radius: 999px;
+      background: #F0EBF8;
+      color: #3E3862; border: 1px solid rgba(94,97,140,.2);
+      transition: all .15s;
+    }
+    .tech-tag:hover { background: var(--lbg-3); color: var(--p1); }
+    .project-links {
+      display: flex; gap: 12px; margin-top: auto; padding-top: 14px;
+      border-top: 1px solid var(--border-lt);
+    }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .8rem; font-weight: 600;
+      color: var(--p5); text-decoration: none; transition: color .15s;
+    }
+    .project-link:hover { color: var(--p1); }
+
+    /* ── SKILLS ── light bg, dark readable cards ─────── */
+    #skills {
+      background: linear-gradient(160deg, #EDE6F5 0%, #E6DDF2 50%, #EDE6F5 100%);
+    }
+    #skills .section-label { color: #5E618C; }
+    #skills .section-title { color: #1E1A38; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 1100px) { .skills-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 600px)  { .skills-grid { grid-template-columns: 1fr; } }
+    .skill-group {
+      background: #FFFFFF;
+      border: 1.5px solid rgba(94,97,140,.16);
+      border-radius: 18px; padding: 24px;
+      box-shadow: 0 3px 16px rgba(62,56,98,.08);
+      transition: border-color .22s, transform .25s cubic-bezier(.34,1.1,.64,1), box-shadow .22s;
+    }
+    .skill-group:hover {
+      border-color: rgba(62,56,98,.28);
+      transform: translateY(-4px);
+      box-shadow: 0 14px 36px rgba(62,56,98,.14);
+    }
+    .skill-group-title {
+      font-size: .68rem; font-weight: 800;
+      color: #3E3862; text-transform: uppercase;
+      letter-spacing: .12em; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .skill-group-title::before {
+      content: ''; display: block; width: 18px; height: 2px;
+      background: #5E618C; border-radius: 2px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .skill-tag {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: .76rem; font-weight: 500; padding: 6px 12px;
+      border-radius: 9px;
+      background: #F4EFF7;
+      color: #3A3360; border: 1px solid rgba(94,97,140,.15);
+      transition: all .2s cubic-bezier(.34,1.1,.64,1); cursor: default;
+    }
+    .skill-tag:hover {
+      background: #EAE0F5;
+      color: #3E3862; border-color: rgba(62,56,98,.28);
+      transform: translateY(-2px);
+    }
+    .skill-tag i { font-size: 1.05rem; flex-shrink: 0; }
+
+    /* ── EDUCATION / AWARDS ──────────────────────────── */
+    .edu-section {
+      background: linear-gradient(155deg, #100D22 0%, #1C1835 30%, #2E2758 60%, #3C425C 100%);
+    }
+    .edu-section .section-label { color: #E6C4E7; }
+    .edu-section .section-title { color: #EDE8F8; }
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 900px) { .edu-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .edu-grid { grid-template-columns: 1fr; } }
+    .edu-card {
+      background: rgba(62,56,98,.35);
+      border: 1px solid rgba(230,196,231,.1);
+      border-radius: 18px; padding: 28px;
+      backdrop-filter: blur(12px);
+      transition: border-color .2s, transform .2s;
+    }
+    .edu-card:hover { border-color: rgba(230,196,231,.28); transform: translateY(-3px); }
+    .edu-card .section-label { margin-bottom: 16px; }
+    .edu-title { font-size: 1.05rem; font-weight: 700; color: #EDE8F8; margin-bottom: 5px; }
+    .edu-inst { font-size: .87rem; color: #C4BCDF; margin-bottom: 8px; }
+    .edu-date { font-size: .73rem; color: #E6C4E7; font-weight: 600; }
+    .edu-spec {
+      display: inline-block; margin-top: 14px;
+      font-size: .73rem; font-weight: 600;
+      background: rgba(230,196,231,.12); color: var(--p3);
+      border: 1px solid rgba(230,196,231,.22);
+      padding: 5px 14px; border-radius: 999px;
+    }
+    .award-card {
+      background: linear-gradient(135deg, rgba(230,196,231,.12), rgba(116,100,136,.15));
+      border: 1px solid rgba(230,196,231,.22);
+    }
+    .award-icon { font-size: 2.2rem; margin-bottom: 16px; display: block; }
+    .award-title { font-size: 1.05rem; font-weight: 700; color: #EDE8F8; margin-bottom: 10px; }
+    .award-desc { font-size: .875rem; color: #C4BCDF; line-height: 1.7; }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: #100D22;
+      border-top: 1px solid rgba(230,196,231,.07);
+      padding: 36px; text-align: center;
+      font-size: .82rem; color: var(--tx4);
+    }
+    footer a { color: var(--p3); text-decoration: none; }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      section { padding: 80px clamp(20px,5vw,40px); }
+      .hero h1 { letter-spacing: -2px; }
+      .exp-list::before, .exp-card::after { display: none; }
+      .exp-card { margin-right: 0; }
+    }
+    @media (max-width: 480px) {
+      .hero-contacts { flex-direction: column; gap: 10px; }
+      .hero-btns { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Daniella<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="hero-dot"></span>
+      Available for opportunities
+    </div>
+    <h1>Daniella<br /><em>Lawi</em></h1>
+    <p class="hero-sub">
+      Computer Science graduate specializing in AI & Deep Learning.
+      Production experience in test automation, microservices, observability,
+      and AI-augmented engineering.
+    </p>
+    <div class="hero-contacts">
+      <a href="tel:0549071570" class="hero-contact">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 0110 2.18 2 2 0 0112 .06v3a2 2 0 01-1.73 1.98 12 12 0 00-5.06 2.94L3 10l-1.15 3.17A12 12 0 004.7 19.2l2.34 1.72a2 2 0 002.23.1c1.12-.68 2.63-1.24 2.63-1.24a2 2 0 001.15-1.79z"/></svg>
+        054-9071570
+      </a>
+      <a href="mailto:Daniellalawi1@gmail.com" class="hero-contact">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Daniellalawi1@gmail.com
+      </a>
+      <a href="https://github.com/Dani7368" target="_blank" class="hero-contact">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        github.com/Dani7368
+      </a>
+    </div>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
+        View Projects
+      </a>
+      <a href="mailto:Daniellalawi1@gmail.com" class="btn-ghost">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact Me
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">About</div>
+    <div class="about-grid">
+      <div>
+        <h2 class="section-title">Building production-grade<br/>systems with AI</h2>
+        <p class="about-text">
+          I'm a Computer Science graduate from Ruppin Academic Center, specializing in
+          <strong>Artificial Intelligence and Deep Learning</strong>. Currently working at
+          <strong>Nayax EV</strong> where I develop end-to-end automation, build observability
+          infrastructure, and apply <strong>AI-augmented engineering</strong> with Claude MCP
+          directly on live production systems.
+          <br/><br/>
+          I thrive at the intersection of software engineering and AI — from building
+          real-time monitoring dashboards in Grafana to deploying deep learning models
+          for phishing detection.
+        </p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-box">
+          <span class="stat-num">3+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">15+</span>
+          <span class="stat-label">Technologies</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">🥇</span>
+          <span class="stat-label">Innovation Award</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">AI</span>
+          <span class="stat-label">Specialization</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="exp-section">
+  <div class="container">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title">Work History</h2>
+    <div class="exp-list">
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-company">Nayax EV, Herzliya</div>
+            <div class="exp-title">Software Engineer — Automation, QA & Observability</div>
+          </div>
+          <span class="exp-date">2025 – Present</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Developed end-to-end test flows using the Patrol automation framework, simulating real EV charging scenarios across backend services, Flutter app, and external systems</li>
+          <li>Validated real-time data flow and integration between backend services, Flutter mobile application, and external systems</li>
+          <li>Implemented and enhanced structured logging mechanisms across .NET 9 microservices to improve production monitoring</li>
+          <li>Designed and built a multi-panel Grafana monitoring dashboard for production background job health with real-time metrics, per-job breakdowns, and 7-day trend visualization linked to Kibana</li>
+          <li>Developed and improved frontend UI components using React</li>
+          <li>Applied AI-augmented development using Claude with MCP (Model Context Protocol), connecting LLM capabilities directly to live codebases and APIs</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-company">Itamar Medical, Caesarea</div>
+            <div class="exp-title">QA & Hardware Production</div>
+          </div>
+          <span class="exp-date">2019 – 2022</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Performed final functionality quality assurance testing on medical devices prior to customer delivery</li>
+          <li>Assisted with hardware production including soldering and CPU board programming</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">Projects</div>
+    <h2 class="section-title">Featured Work</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">✈️</div>
+          <div class="project-name">FlightBoard</div>
+          <div class="project-tagline">Ben Gurion Airport · Live Dashboard</div>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">
+            A premium real-time flight board dashboard for Ben Gurion Airport.
+            Features a modern SaaS-style UI, live flight filtering, searchable dropdowns,
+            and a full microservices backend with user authentication and saved flights.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">JWT Auth</span>
+            <span class="tech-tag">REST API</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">Render</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Dani7368/flightboard" target="_blank" class="project-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              GitHub
+            </a>
+            <a href="https://dani7368.github.io/flightboard/Flightsbook/" target="_blank" class="project-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live Demo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header" style="background:linear-gradient(135deg,#1a0a2e 0%,#2d1054 50%,#4a1d7a 100%)">
+          <div class="project-icon" style="background:rgba(216,180,254,.15);border-color:rgba(216,180,254,.25)">✨</div>
+          <div class="project-name">Glow AI</div>
+          <div class="project-tagline">Skincare · AI Consultation App</div>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">
+            An AI-powered skincare consultation web app. Users upload a photo, fill a
+            personalized skin assessment form, and receive AI-generated analysis with
+            tailored product recommendations and a custom skincare routine.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">AI Analysis</span>
+            <span class="tech-tag">Image Upload</span>
+            <span class="tech-tag">CSS</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Dani7368" target="_blank" class="project-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">🛡️</div>
+          <div class="project-name">SafeNet</div>
+          <div class="project-tagline">Final Project · Phishing Detection AI</div>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">
+            Real-time phishing detection system combining computer vision and NLP.
+            Captures screen content, extracts text via Tesseract OCR, and classifies
+            threats using a DistilBERT model. Integrated Splunk dashboards for
+            real-time threat monitoring and analysis.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">DistilBERT</span>
+            <span class="tech-tag">Hugging Face</span>
+            <span class="tech-tag">Tesseract OCR</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">NumPy</span>
+            <span class="tech-tag">Splunk</span>
+            <span class="tech-tag">NLP</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Dani7368" target="_blank" class="project-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background:var(--light)">
+  <div class="container">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title">Technical Stack</h2>
+    <div class="skills-grid">
+
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag"><i class="devicon-python-plain colored"></i>Python</span>
+          <span class="skill-tag"><i class="devicon-c-plain colored"></i>C</span>
+          <span class="skill-tag"><i class="devicon-java-plain colored"></i>Java</span>
+          <span class="skill-tag"><i class="devicon-csharp-plain colored"></i>C#</span>
+          <span class="skill-tag"><i class="devicon-javascript-plain colored"></i>JavaScript</span>
+          <span class="skill-tag"><i class="devicon-dart-plain colored"></i>Dart</span>
+          <span class="skill-tag"><i class="devicon-postgresql-plain colored"></i>SQL</span>
+          <span class="skill-tag"><i class="devicon-html5-plain colored"></i>HTML / <i class="devicon-css3-plain colored"></i>CSS</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Backend & APIs</div>
+        <div class="skill-tags">
+          <span class="skill-tag"><i class="devicon-dotnetcore-plain colored"></i>.NET 9</span>
+          <span class="skill-tag"><i class="devicon-dotnetcore-plain colored"></i>ASP.NET Core</span>
+          <span class="skill-tag"><i class="devicon-nodejs-plain colored"></i>Node.js</span>
+          <span class="skill-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg>REST APIs</span>
+          <span class="skill-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>Swagger</span>
+          <span class="skill-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>OCPP</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Frontend & Mobile</div>
+        <div class="skill-tags">
+          <span class="skill-tag"><i class="devicon-react-original colored"></i>React</span>
+          <span class="skill-tag"><i class="devicon-flutter-plain colored"></i>Flutter</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">AI & Machine Learning</div>
+        <div class="skill-tags">
+          <span class="skill-tag"><i class="devicon-pytorch-original colored"></i>Deep Learning</span>
+          <span class="skill-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="opacity:.8"><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zm0 12c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"/></svg>Hugging Face</span>
+          <span class="skill-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>NLP</span>
+          <span class="skill-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M3 12h3m12 0h3M12 3v3m0 12v3"/></svg>Neural Networks</span>
+          <span class="skill-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9m-12 12H5a2 2 0 01-2-2V9m0 0h18"/></svg>LLMs</span>
+          <span class="skill-tag"><i class="devicon-python-plain colored"></i>DistilBERT</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Observability</div>
+        <div class="skill-tags">
+          <span class="skill-tag"><i class="devicon-grafana-original colored"></i>Grafana</span>
+          <span class="skill-tag"><i class="devicon-kibana-plain colored"></i>Kibana</span>
+          <span class="skill-tag"><i class="devicon-elasticsearch-plain colored"></i>Elasticsearch</span>
+          <span class="skill-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="opacity:.75"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg>Splunk</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Cloud & DevOps</div>
+        <div class="skill-tags">
+          <span class="skill-tag"><i class="devicon-amazonwebservices-plain colored"></i>AWS</span>
+          <span class="skill-tag"><i class="devicon-docker-plain colored"></i>Docker</span>
+          <span class="skill-tag"><i class="devicon-git-plain colored"></i>Git</span>
+          <span class="skill-tag"><i class="devicon-gitlab-plain colored"></i>GitLab</span>
+          <span class="skill-tag"><i class="devicon-jira-plain colored"></i>Jira</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Testing & QA</div>
+        <div class="skill-tags">
+          <span class="skill-tag"><i class="devicon-flutter-plain colored"></i>Patrol</span>
+          <span class="skill-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>E2E Automation</span>
+          <span class="skill-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>Integration Testing</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">AI Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="opacity:.8"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm0 18a8 8 0 110-16 8 8 0 010 16zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>Claude + MCP</span>
+          <span class="skill-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Cursor</span>
+          <span class="skill-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="opacity:.8"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Gemini</span>
+          <span class="skill-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>ChatGPT</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION & AWARDS -->
+<section id="education" class="edu-section">
+  <div class="container">
+    <div class="section-label" style="color:var(--teal)">Education & Awards</div>
+    <h2 class="section-title" style="color:#fff">Background</h2>
+    <div class="edu-grid">
+
+      <div class="edu-card">
+        <div class="section-label">Education</div>
+        <div class="edu-title">B.Sc. Computer Science & Data</div>
+        <div class="edu-inst">Ruppin Academic Center</div>
+        <div class="edu-date">2022 – 2025</div>
+        <span class="edu-spec">Specialization: AI & Deep Learning</span>
+      </div>
+
+      <div class="edu-card award-card">
+        <div class="section-label">Award</div>
+        <span class="award-icon">🥇</span>
+        <div class="award-title">1st Place — University Innovation Contest</div>
+        <div class="award-desc">
+          Led a team designing a wristband emergency alarm system capable of operating
+          without internet connectivity. Awarded first place in a university-wide
+          innovation competition.
+        </div>
+      </div>
+
+      <div class="edu-card" style="background:linear-gradient(135deg,rgba(255,153,0,.08),rgba(255,153,0,.03));border-color:rgba(255,153,0,.2)">
+        <div class="section-label" style="color:#FF9900">Certification</div>
+        <div style="font-size:1.6rem;margin-bottom:12px">
+          <i class="devicon-amazonwebservices-plain colored"></i>
+        </div>
+        <div class="edu-title">AWS Cloud Developing</div>
+        <div class="edu-inst">Amazon Web Services</div>
+        <span class="edu-spec" style="background:rgba(255,153,0,.12);color:#FF9900;border-color:rgba(255,153,0,.25)">Certificate</span>
+      </div>
+
+      <div class="edu-card">
+        <div class="section-label">Military Service</div>
+        <div class="edu-title">Israel Police</div>
+        <div class="edu-inst">Jerusalem District</div>
+        <div class="edu-date">2017 – 2019</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built with ❤️ by <a href="mailto:Daniellalawi1@gmail.com">Daniella Lawi</a> ·
+  <a href="https://github.com/Dani7368" target="_blank">github.com/Dani7368</a>
+</footer>
+
+</body>
+</html>
