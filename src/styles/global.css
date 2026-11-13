@@ -430,9 +430,17 @@ main > section {
   display: grid;
   gap: 48px;
 }
+.about-text {
+  max-width: 680px;
+  padding: clamp(24px, 3vw, 36px);
+  background: #fff;
+  border: 1.5px solid var(--border-lt);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px -12px rgba(62, 56, 98, 0.22);
+}
 .about-text p {
   font-size: 1.05rem;
-  line-height: 1.85;
+  line-height: 1.8;
   color: var(--dtx2);
 }
 .about-text p + p {
@@ -513,6 +521,7 @@ main > section {
   border-radius: 20px;
   background: rgba(62, 56, 98, 0.38);
   border: 1px solid rgba(230, 196, 231, 0.12);
+  box-shadow: 0 10px 30px -12px rgba(8, 6, 18, 0.55);
   transition: border-color 0.25s, transform 0.25s;
 }
 .exp-card:last-child {
@@ -704,6 +713,7 @@ main > section {
   padding: 28px;
   border-radius: 18px;
   background: linear-gradient(155deg, #16132a 0%, #1e1b38 60%, #2a2450 100%);
+  box-shadow: 0 16px 40px -16px rgba(36, 21, 42, 0.55);
   color: var(--tx1);
 }
 .pipeline__head {
@@ -817,6 +827,7 @@ main > section {
   border-radius: 14px;
   background: var(--lbg-2);
   border: 1px solid var(--border-lt);
+  box-shadow: 0 4px 16px rgba(62, 56, 98, 0.08);
 }
 .challenge h4 {
   margin-bottom: 4px;
@@ -955,6 +966,7 @@ main > section {
   border-radius: 18px;
   background: rgba(62, 56, 98, 0.35);
   border: 1px solid var(--border-dk);
+  box-shadow: 0 10px 30px -12px rgba(8, 6, 18, 0.55);
   transition: border-color 0.2s, transform 0.2s;
 }
 .edu-card:hover {
@@ -1037,6 +1049,7 @@ main > section {
   border-radius: var(--radius);
   background: #fff;
   border: 1.5px solid var(--border-lt);
+  box-shadow: 0 4px 20px rgba(62, 56, 98, 0.08);
   min-height: 76px;
 }
 a.contact-item {

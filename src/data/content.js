@@ -27,27 +27,10 @@ export const hero = {
     'Software Developer experienced in React, C#/.NET, REST APIs, production issue resolution, and end-to-end automation.',
 }
 
-export const summary =
-  'Full-Stack Developer with hands-on experience in UI development, REST API integration, and backend maintenance using React and C#/.NET. Experienced in resolving production issues and developing end-to-end test automation. B.Sc. in Computer Science with a specialization in Artificial Intelligence and Data Science.'
-
 export const about = {
   paragraphs: [
     "I'm a Full-Stack Developer with a B.Sc. in Computer Science, specializing in Artificial Intelligence and Data Science.",
-    'At Nayax Energy, I work across user interface development, backend maintenance, test automation, and production monitoring. I enjoy understanding how systems work, solving real-world problems, and turning complex workflows into practical software solutions.',
-  ],
-  highlights: [
-    {
-      title: 'Production Experience',
-      text: 'Investigating and resolving production issues, backed by Grafana dashboards built on Elasticsearch and database data.',
-    },
-    {
-      title: 'Full-Stack Development',
-      text: 'React interfaces on the front, C#/.NET logic and REST APIs behind them, plus end-to-end tests that validate the whole flow.',
-    },
-    {
-      title: 'AI & Data Science',
-      text: 'B.Sc. specialization in Artificial Intelligence and Data Science, applied in SafeNet, an OCR and NLP content detection system.',
-    },
+    'At Nayax Energy, I work on user interfaces, backend maintenance, production issue resolution, and end-to-end test automation.',
   ],
 }
 
